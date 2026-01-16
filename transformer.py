@@ -33,3 +33,17 @@ class Transformer:
         for token in tokens:
             if token not in self.vocab:
                 self.vocab[token] = len(self.vocab)
+
+    def get_ids(self):
+        '''
+        Docstring for get_ids
+        
+        :param self: Description
+        this returns a list of ids from a given sequence, which will be used in the pad_and_mask() 
+        '''
+        id_list = []
+        for id in self.vocab.values():
+            id_list.append(id)
+        return id_list
+    def pad_and_mask(self, id, max_len):
+        pass
