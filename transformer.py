@@ -4,7 +4,7 @@ import torch
 class Transformer:
     def __init__(self):
         self.vocab = {}
-        self.embed = []
+        self.embedding = []
 
     def tokenize(self, user_input):
         '''
@@ -76,5 +76,16 @@ class Transformer:
         create a word embeddings table for the vocabulary
         '''
         vocab_size = len(self.vocab)
-        self.embed = torch.nn.Embedding(num_embeddings=vocab_size,
+        self.embedding = torch.nn.Embedding(num_embeddings=vocab_size,
                                         embedding_dim=embed_dim)
+    
+    def embed(self, input_ids):
+        '''
+        Docstring for embed
+        
+        :param self: Description
+        :param input_ids: Description
+        converts the token ids into embedding vectors
+        '''
+        ids_tensor = torch.tensor(input_ids, dtype=torch.long)
+        return self.embedding(ids_tensor)

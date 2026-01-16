@@ -8,4 +8,4 @@ if __name__ == '__main__':
     transformer.pad_and_mask(ids, 5)
 
     transformer.build_embeddings(16)
-    print(transformer.embed)
+    print(transformer.embed(ids))
