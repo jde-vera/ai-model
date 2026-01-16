@@ -44,3 +44,11 @@ def test_build_vocab_creates_vocab():
     assert "Miley" in vocab
     assert "Cyrus" in vocab
     assert "." in vocab
+
+def test_pad_and_mask():
+    t = Transformer()
+    t.vocab = {"[PAD]": 0, "[UNK]": 1}  # minimal vocab for this test
+
+    ids, mask = t.pad_and_mask([5, 6, 7], max_len=5)
+    assert ids == [5, 6, 7, 0, 0]
+    assert mask == [1, 1, 1, 0, 0]

@@ -46,4 +46,23 @@ class Transformer:
             id_list.append(id)
         return id_list
     def pad_and_mask(self, id, max_len):
-        pass
+        '''
+        Docstring for pad_and_mask
+        
+        :param self: Description
+        :param id: Description
+        :param max_len: Description
+        this truncates a given list of ids if the list is too big
+        and pads if the list is too small
+        0 indicates padding and 1 indicates real token
+        '''
+        id = id[:max_len]
+
+        attention_mask = [1] * len(id)
+
+        pad = max_len - len(id)
+        if pad > 0:
+            id = id + ([0] * pad)
+            attention_mask = attention_mask + ([0] * pad)
+
+        return id, attention_mask
