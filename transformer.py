@@ -1,8 +1,10 @@
 import re
+import torch
 
 class Transformer:
     def __init__(self):
         self.vocab = {}
+        self.embed = []
 
     def tokenize(self, user_input):
         '''
@@ -66,3 +68,13 @@ class Transformer:
             attention_mask = attention_mask + ([0] * pad)
 
         return id, attention_mask
+    def build_embeddings(self, embed_dim):
+        '''
+        Docstring for build_embeddings
+        
+        :param self: Description
+        create a word embeddings table for the vocabulary
+        '''
+        vocab_size = len(self.vocab)
+        self.embed = torch.nn.Embedding(num_embeddings=vocab_size,
+                                        embedding_dim=embed_dim)
