@@ -89,3 +89,15 @@ class Transformer:
         '''
         ids_tensor = torch.tensor(input_ids, dtype=torch.long)
         return self.embedding(ids_tensor)
+    def add_positions(self, token_vecs):
+        '''
+        Docstring for add_positions
+        
+        :param self: Description
+        :param token_vecs: Description
+        add positions so that the transformer knows the order
+        '''
+        seq_len = token_vecs.shape[0]
+        positions = torch.arrange(seq_len, dtype=torch.long)
+        pos_vecs = self.embedding(positions)
+        return token_vecs + pos_vecs
