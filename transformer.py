@@ -5,6 +5,7 @@ class Transformer:
     def __init__(self):
         self.vocab = {}
         self.embedding = []
+        self.pos_embedding = []
 
     def tokenize(self, user_input):
         '''
@@ -109,3 +110,4 @@ class Transformer:
         :param max_len: the number of tokens the model is allow to see at once
         :param embed_dim: how many digits you want to represent the dense vectors
         '''
+        self.pos_embedding = torch.nn.Embedding(max_len, embed_dim)
