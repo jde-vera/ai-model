@@ -11,5 +11,5 @@ if __name__ == '__main__':
     transformer.build_embeddings(16)
     token_vecs = transformer.embed(ids)
 
-    transformer.build_positional_embeddings(max_len=5, embed_dim=16)
+    transformer.build_positional_embeddings(max_len=16, embed_dim=16)
     print(transformer.add_positions(token_vecs))
