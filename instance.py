@@ -9,6 +9,7 @@ if __name__ == '__main__':
 
     # you need to assign the self.embedding variable with an embedding object in order to embed token ids
     transformer.build_embeddings(16)
-    print(transformer.embed(ids)) 
+    token_vecs = transformer.embed(ids)
 
-    print(type(transformer.embed(ids)))
+    transformer.build_positional_embeddings(max_len=5, embed_dim=16)
+    print(transformer.add_positions(token_vecs))

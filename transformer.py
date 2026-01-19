@@ -99,8 +99,8 @@ class Transformer:
         add positions so that the transformer knows the order
         '''
         seq_len = token_vecs.shape[0]
-        positions = torch.arrange(seq_len, dtype=torch.long)
-        pos_vecs = self.embedding(positions)
+        positions = torch.arange(seq_len, dtype=torch.long)
+        pos_vecs = self.pos_embedding(positions)
         return token_vecs + pos_vecs
     def build_positional_embeddings(self, max_len, embed_dim):
         '''
