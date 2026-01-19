@@ -52,8 +52,8 @@ class Transformer:
         Docstring for pad_and_mask
         
         :param self: Description
-        :param id: Description
-        :param max_len: Description
+        :param id: list of token ids
+        :param max_len: max len of id and attention_mask lists
         this truncates a given list of ids if the list is too big
         and pads if the list is too small
         0 indicates padding and 1 indicates real token
@@ -84,7 +84,7 @@ class Transformer:
         Docstring for embed
         
         :param self: Description
-        :param input_ids: Description
+        :param input_ids: list of token ids
         converts the token ids into embedding vectors
         '''
         ids_tensor = torch.tensor(input_ids, dtype=torch.long)
@@ -94,10 +94,18 @@ class Transformer:
         Docstring for add_positions
         
         :param self: Description
-        :param token_vecs: Description
+        :param token_vecs: tensor object
         add positions so that the transformer knows the order
         '''
         seq_len = token_vecs.shape[0]
         positions = torch.arrange(seq_len, dtype=torch.long)
         pos_vecs = self.embedding(positions)
         return token_vecs + pos_vecs
+    def build_positional_embeddings(self, max_len, embed_dim):
+        '''
+        Docstring for build_positional_embeddings
+        
+        :param self: Description
+        :param max_len: the number of tokens the model is allow to see at once
+        :param embed_dim: how many digits you want to represent the dense vectors
+        '''
