@@ -19,12 +19,6 @@ class Transformer:
         return regex.findall(user_input)
     
     def build_vocab(self, user_input):
-        '''
-        Docstring for build_vocab
-        
-        :param self: Description
-        '''
-
         token_list = self.tokenize(user_input)
 
         tokens = set()
@@ -43,9 +37,6 @@ class Transformer:
 
     def get_ids(self):
         '''
-        Docstring for get_ids
-        
-        :param self: Description
         this returns a list of ids from a given sequence, which will be used in the pad_and_mask() 
         '''
         id_list = []
@@ -54,11 +45,9 @@ class Transformer:
         return id_list
     def pad_and_mask(self, id, max_len):
         '''
-        Docstring for pad_and_mask
-        
-        :param self: Description
         :param id: list of token ids
         :param max_len: max len of id and attention_mask lists
+
         this truncates a given list of ids if the list is too big
         and pads if the list is too small
         0 indicates padding and 1 indicates real token
@@ -75,9 +64,6 @@ class Transformer:
         return id, attention_mask
     def build_embeddings(self, embed_dim):
         '''
-        Docstring for build_embeddings
-        
-        :param self: Description
         create a word embeddings table for the vocabulary
         '''
         vocab_size = len(self.vocab)
@@ -86,9 +72,6 @@ class Transformer:
     
     def embed(self, input_ids):
         '''
-        Docstring for embed
-        
-        :param self: Description
         :param input_ids: list of token ids
         converts the token ids into embedding vectors
         '''
@@ -96,9 +79,6 @@ class Transformer:
         return self.embedding(ids_tensor)
     def add_positions(self, token_vecs):
         '''
-        Docstring for add_positions
-        
-        :param self: Description
         :param token_vecs: tensor object
         add positions so that the transformer knows the order
         '''
@@ -108,9 +88,6 @@ class Transformer:
         return token_vecs + pos_vecs
     def build_positional_embeddings(self, max_len, embed_dim):
         '''
-        Docstring for build_positional_embeddings
-        
-        :param self: Description
         :param max_len: the number of tokens the model is allow to see at once
         :param embed_dim: how many digits you want to represent the dense vectors
         '''
