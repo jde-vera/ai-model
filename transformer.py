@@ -4,6 +4,7 @@ import torch
 class Transformer:
     def __init__(self):
         self.vocab = {}
+        self.curr_tokens = []
         self.embedding = []
         self.pos_embedding = []
 
@@ -32,10 +33,13 @@ class Transformer:
             tokens.add(token)
         
         self.vocab = {"[PAD]": 0, "[UNK]": 1}
+        self.curr_tokens = []
 
         for token in tokens:
             if token not in self.vocab:
                 self.vocab[token] = len(self.vocab)
+            
+            self.curr_tokens.append(self.vocab[token])
 
     def get_ids(self):
         '''
@@ -45,7 +49,7 @@ class Transformer:
         this returns a list of ids from a given sequence, which will be used in the pad_and_mask() 
         '''
         id_list = []
-        for id in self.vocab.values():
+        for id in self.curr_tokens:
             id_list.append(id)
         return id_list
     def pad_and_mask(self, id, max_len):
